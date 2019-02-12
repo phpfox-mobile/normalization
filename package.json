@@ -1,0 +1,22 @@
+{
+  "name": "normalization",
+  "version": "1.0.0",
+  "description": "modular json normalization",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phpfox-mobile/normalization.git"
+  },
+  "keywords": [
+    "normalization"
+  ],
+  "author": "ovalsky <ovalsky@phpfox.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phpfox-mobile/normalization/issues"
+  },
+  "homepage": "https://github.com/phpfox-mobile/normalization#readme"
+}
