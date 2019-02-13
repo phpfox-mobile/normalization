@@ -75,21 +75,28 @@ export default class EntitySchema {
           const value = processedEntity[key]
           let schema = this.schema[key]
 
-          if (Array.isArray(value)) {
-
+          if (Array.isArray(value) && value.length
+            && typeof value[0] === 'object'
+            && value[0].resource_name) {
+            schema = getRegisteredSchema(value[0].module_name, value[0].resource_name)
           } else if (value.resource_name) {
+            if(!value.id && key == 'embed_object'){
+              value.id =  processedEntity.resource_name + '-' + processedEntity.id.toString() + '-'  + key
+            }
             schema = getRegisteredSchema(value.module_name, value.resource_name)
           }
 
-          if (schema && value.id) {
+          if (schema) {
             const result = visit(value, processedEntity, key, schema, addEntity)
             const module_name = value.module_name || schema.module_name
             const resource_name = value.resource_name || schema.resource_name
 
-            if (Array.isArray(result)) {
-              processedEntity[key] = result
-            } else {
+            if(result){
               processedEntity[key] = { module_name, resource_name, id: result }
+              if(!processedEntity._spec){
+                processedEntity._spec = []
+              }
+              processedEntity._spec.push(key)
             }
           }
         }
