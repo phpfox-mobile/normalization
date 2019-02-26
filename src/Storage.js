@@ -1,7 +1,6 @@
 import idx from 'idx'
-import EntitySchema from './Entity'
+import EntitySchema, { attachmentSchema, simpleTagSchema, simpleUserSchema } from './Entity'
 import type { EntityDataProps, SchemaConfig } from './Types'
-import { attachmentSchema, simpleTagSchema, simpleUserSchema } from './Simple'
 import { nextTrackerId } from './Tracker'
 import {
   checkDefinition, getRegisteredSchema, registerResourceAlias, registerSchema,

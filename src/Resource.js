@@ -1,6 +1,6 @@
 import idx from 'idx'
 import type { ReferenceProps, SchemaConfig } from './Types'
-import { simpleUserSchema } from './Simple'
+import { simpleUserSchema } from '../index'
 
 const SchemaDefinition = {}
 const ResourceMap = {}
