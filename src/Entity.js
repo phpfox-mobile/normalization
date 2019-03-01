@@ -93,10 +93,6 @@ export default class EntitySchema {
 
             if(result){
               processedEntity[key] = { module_name, resource_name, id: result }
-              if(!processedEntity._spec){
-                processedEntity._spec = []
-              }
-              processedEntity._spec.push(key)
             }
           }
         }
