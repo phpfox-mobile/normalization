@@ -29,13 +29,16 @@ export const createSchema = (config: SchemaConfig): EntitySchema => {
     resource_name: config.resource_name,
     module_name: config.module_name,
     processStrategy: (entity: EntityDataProps) => {
-      entity = {
-        has_action: Object.values({
+       if (entity.extra != null) {
+        entity.has_action = Object.values({
           ...entity.extra,
           can_like: false,
           can_comment: false,
           can_share: false
-        }).filter(x => x === true).length > 0,
+        }).filter(x => x === true).length > 0
+      }
+      
+      entity = {
         ...entity,
         ...entity.statistic,
         ...entity.feed_param,
