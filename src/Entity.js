@@ -80,8 +80,9 @@ export default class EntitySchema {
             && value[0].resource_name) {
             schema = getRegisteredSchema(value[0].module_name, value[0].resource_name)
           } else if (value.resource_name) {
-            if(!value.id && key == 'embed_object'){
-              value.id =  processedEntity.resource_name + '-' + processedEntity.id.toString() + '-'  + key
+            if (!value.id && key == 'embed_object') {
+              const embed_object_id = value?.feed_item_id?.toString() || processedEntity?.id?.toString()
+              value.id = processedEntity.resource_name + '-' + embed_object_id + '-'  + key
             }
             schema = getRegisteredSchema(value.module_name, value.resource_name)
           }
