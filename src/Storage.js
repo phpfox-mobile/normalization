@@ -1,4 +1,3 @@
-import idx from 'idx'
 import EntitySchema, { attachmentSchema, simpleTagSchema, simpleUserSchema } from './Entity'
 import type { EntityDataProps, SchemaConfig } from './Types'
 import { nextTrackerId } from './Tracker'
@@ -77,7 +76,7 @@ export const createSchema = (config: SchemaConfig): EntitySchema => {
 
     if (config.relations) {
       Object.keys(config.relations).forEach(key => {
-        const def = idx(config.relations, x => x[key])
+        const def = config.relations?.[key]
         if (def) {
           const module_name = def.module_name
             ? def.module_name

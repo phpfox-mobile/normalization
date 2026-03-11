@@ -1,4 +1,3 @@
-import idx from 'idx'
 import type { ReferenceProps, SchemaConfig } from './Types'
 import { simpleUserSchema } from '../index'
 
@@ -17,11 +16,11 @@ export function registerResourceAlias (module_name, resource_name, alias) {
 export function getRegisteredResourceName (module_name, resource_name) {
   resource_name = resource_name.replace('-', '_')
 
-  let name = idx(ResourceAlias, v => v[module_name][resource_name])
+  let name = ResourceAlias?.[module_name]?.[resource_name]
   if (name) {
     return name
   }
-  if (idx(SchemaStorage, v => v[module_name][resource_name])) {
+  if (SchemaStorage?.[module_name]?.[resource_name]) {
     return resource_name
   }
 
@@ -29,7 +28,7 @@ export function getRegisteredResourceName (module_name, resource_name) {
 }
 
 export function getResourceAlias (module_name, alias) {
-  return idx(ResourceAlias, v => v[module_name][alias])
+  return ResourceAlias?.[module_name]?.[alias]
 }
 
 export const registerSchemaDefinition = (
@@ -50,8 +49,8 @@ export const getModuleNameByResourceName = (resource_name) => {
 export const getSchemaDefinition = (module_name, resource_name, key) => {
 
   return key
-    ? idx(SchemaDefinition, v => v[module_name][resource_name][key])
-    : idx(SchemaDefinition, v => v[module_name][resource_name])
+    ? SchemaDefinition?.[module_name]?.[resource_name]?.[key]
+    : SchemaDefinition?.[module_name]?.[resource_name]
 }
 
 export const registerSchema = (module_name, resource_name, entity) => {
@@ -82,7 +81,7 @@ export const getRegisteredSchema = (module_name, resource_name) => {
     module_name = getModuleNameByResourceName(resource_name)
   }
 
-  return idx(SchemaStorage, v => v[module_name][resource_name])
+  return SchemaStorage?.[module_name]?.[resource_name]
 }
 
 export const getRegisteredSchemaKeys = () => {
